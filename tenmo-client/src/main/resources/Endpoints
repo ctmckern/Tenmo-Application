@@ -1,0 +1,30 @@
+RestAccountService:
+DONT NEED getBalance(AuthenticatedUser authenticatedUser) baseUrl + "/balance"*
+DONE getAccountByUserId(AuthenticatedUser authenticatedUser, int userId) baseUrl + "account/user/" + userId,
+getAccountById(AuthenticatedUser authenticatedUser, int accountId) baseUrl + "account/" + accountId*
+
+RestTransferService:
+DONE createTransfer(AuthenticatedUser authenticatedUser, Transfer transfer) baseUrl + "/transfers/+{id}"
+DONE getTransfersFromUserId(AuthenticatedUser authenticatedUser, int userId) baseUrl + "/transfers/user/"
+DONE getTransferFromTransferId(AuthenticatedUser authenticatedUser, int id) baseUrl + "/transfers/"
+DONE getAllTransfers(AuthenticatedUser authenticatedUser) baseUrl + "/transfers"
+DONE getPendingTransfersByUserId(AuthenticatedUser authenticatedUser) baseUrl + "/transfers/user/" + authenticatedUser.getUser().getId() + "/pending"
+FIX updateTransfer(AuthenticatedUser authenticatedUser, Transfer transfer) baseUrl + "/transfers/" + transfer.getTransferId()
+
+RestTransferStatusService:
+DONE getTransferStatus(AuthenticatedUser authenticatedUser, String description) baseUrl + "/transferstatus/filter?description=" + description;
+DONE getTransferStatusById(AuthenticatedUser authenticatedUser, int transferStatusId) baseUrl + "/transferstatus/" + transferStatusId
+
+RestTransferTypeService:
+DO getTransferType(AuthenticatedUser authenticatedUser, String description) baseUrl + "/transfertype/filter?description=" + description
+DO getTransferTypeFromId(AuthenticatedUser authenticatedUser, int transferTypeId) baseUrl + "transfertype/" + transferTypeId
+
+RestUserService:
+SHOULD BE GOOD ALREADY getAllUsers(AuthenticatedUser authenticatedUser) BASE_URL + "/users"
+SHOULD BE GOOD ALREADY getUserByUserId(AuthenticatedUser authenticatedUser, int id) BASE_URL + "/users/" + id
+
+*Might not need
+should find all pending return our requests or just anything pending
+
+
+IMPORTANT, MAKE THE CREATE TRANSFER METHOD RUN THE ACCOUNT ADJUSTMENT IF STATUS = APPROVED!!!!!

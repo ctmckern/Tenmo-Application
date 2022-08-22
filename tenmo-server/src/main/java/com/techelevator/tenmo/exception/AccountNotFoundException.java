@@ -1,0 +1,9 @@
+package com.techelevator.tenmo.exception;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@ResponseStatus(HttpStatus.BAD_REQUEST)
+public class AccountNotFoundException extends Exception{
+    public AccountNotFoundException(){super ("The account doesn't seem to exist.");}
+}
